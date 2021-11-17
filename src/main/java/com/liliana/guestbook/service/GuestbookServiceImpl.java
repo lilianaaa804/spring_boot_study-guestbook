@@ -47,9 +47,4 @@ public class GuestbookServiceImpl implements GuestbookService{
         return new PageResultDTO<>(result, fn);
 
     }
-
-    @Override
-    public Guestbook dtoToEntity(GuestbookDTO dto) {
-        return null;
-    }
 }
