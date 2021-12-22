@@ -29,10 +29,12 @@ public interface GuestbookService {
                 .content(entity.getContent())
                 .writer(entity.getWriter())
                 .regDate(entity.getRegDate())
-                .modeDate(entity.getModDate())
+                .modDate(entity.getModDate())
                 .build();
         return dto;
     }
+
+    GuestbookDTO read(Long gno);
 
 
 }
