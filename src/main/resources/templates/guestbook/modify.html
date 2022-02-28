@@ -29,8 +29,8 @@
             <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
         </div><!--name 속성 없애기. 수정 불가능하고 JPA 에서 자동으로 처리될 것이므로-->
     </form>
-        <button type="button" class="btn btn-primary">Modify</button>
-        <button type="button" class="btn btn-info">List</button>
+        <button type="button" class="btn btn-primary modifyBtn">Modify</button>
+        <button type="button" class="btn btn-info listBtn">List</button>
         <button type="button" class="btn btn-danger removeBtn">Remove</button>
     </th:block>
 </th:block>
@@ -43,6 +43,27 @@
             .attr("action", "/guestbook/remove")
             .attr("method", "post");
         actionForm.submit();
-    })
+    });
+
+    $(".modifyBtn").click(function(){
+        if(!confirm("수정하시겠습니까?")){
+            return;
+        }
+        actionForm
+            .attr("action", "/guestbook/modify")
+            .attr("method", "post")
+            .submit();
+    });
+
+    $(".listBtn").click(function (){
+        var pageInfo = $("input[name='page']");
+        actionForm.empty();
+        actionForm.append(pageInfo); //페이지 관련 정보 추가: 원래 페이지로 이동하기 위해
+        actionForm
+            .attr("action", "/guestbook/list")
+            .attr("method", "get");
+        actionForm.submit();
+    });
+
 </script>
 
